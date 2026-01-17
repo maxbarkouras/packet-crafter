@@ -64,7 +64,7 @@ int craft_packet(can_msg *msg){
     msg->packet = (msg->packet << 1) | 0;
     bit_count++;
 
-    // IDE (r1)
+    // IDE
     msg->packet = (msg->packet << 1) | 0;
     bit_count++;
 
@@ -81,6 +81,26 @@ int craft_packet(can_msg *msg){
         msg->packet = (msg->packet << 8) | msg->msg_packet[i];
         bit_count+=8;
     }
+
+    // CRC
+    msg->packet = (msg->packet << 15);
+    bit_count+=15;
+
+    // CRC Delimeter
+    msg->packet = (msg->packet << 1) | 0x1;
+    bit_count++;
+
+    // ACK
+    msg->packet = (msg->packet << 1) | 0x1;
+    bit_count++;
+    
+    // ACK Delimeter
+    msg->packet = (msg->packet << 1) | 0x1;
+    bit_count++;
+
+    // EOF
+    msg->packet = (msg->packet << 7) | 0x7f;
+    bit_count+=7;
     
     return bit_count;
 }
