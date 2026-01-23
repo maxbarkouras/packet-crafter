@@ -1,4 +1,4 @@
-module crc_create(
+module controller(
 
     input logic clk,
     input logic rst,
@@ -27,7 +27,7 @@ module crc_create(
 
 );
 
-    // RX
+    // Tx
     always_ff @(posedge clk) begin
         if (init) begin
             TX_BUSY <= '0;
@@ -77,7 +77,7 @@ module crc_create(
         end
     end
 
-    // // TX
+    // // rx
     // always_ff @(posedge clk) begin
     //     if (init) begin
     //         packet <= '0;

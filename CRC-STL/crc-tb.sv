@@ -1,4 +1,4 @@
-module crc_tb;
+module controller_tb;
     timeunit 1ns;
     timeprecision 1ps;
 
@@ -11,7 +11,7 @@ module crc_tb;
     bit [7:0] can_data [0:7];
     bit [2:0] data_bytes;
 
-    crc_create maker(
+    controller maker(
         .clk(clk),
         .rst(rst),
         .bit_in(bit_in),
